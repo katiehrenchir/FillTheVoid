@@ -1,3 +1,4 @@
+
 <?php 
 
 ini_set('display_startup_errors', true);
@@ -13,8 +14,6 @@ if ($mysqli->connect_errno) {
     printf("Connect failed: %s\n", $mysqli->connect_error);
     exit();
 }
-
-echo "<h1>connected successfully</h1>";
 ?>  
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -25,18 +24,20 @@ echo "<h1>connected successfully</h1>";
     <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
 </head>
 <body>
+<div class="main">
 
-<h3>Search Pets</h3>
-    <p>You  may search by name</p>
-    <form  method="GET" action="search.php">
-    <p>Find a </p>
-        <input type="radio" name="animaltype" value="dog" checked="checked"> Dog<br>
-        <input type="radio" name="animaltype" value="cat"> Cat<br>
-        <input type="radio" name="animaltype" value="other"> Other<br>
-        <p>near </p>
-      <input  type="text" name="search" placeholder="Location">
-      <input  type="submit" name="submit" value="Search">
-    </form>
+<h1>Animal Companion Locator</h1>
+<form  method="GET" action="search.php">
+            <p>Find a 
+            <input type="radio" name="animaltype" value="dog"> Dog 
+            <input type="radio" name="animaltype" value="cat"> Cat
+            <input type="radio" name="animaltype" value="other"> Other<br>
+            </p>
+            <p>near 
+            <input  type="text" name="search" placeholder="Location">
+            <input  type="submit" name="submit" value="Search">
+            </p>
+        </form>
 
 <?php 
 
@@ -48,18 +49,26 @@ $type = $_GET['animaltype'];
 $petsid = array();
 $petscontent = array();
 $pettype = array();
+$breed = array();
+$sheltername = array();
+$petphotos = array();
 
-$query = "SELECT * FROM PET WHERE NAME LIKE '%".$search."%'";
+$query = "SELECT * FROM SHELTER inner join 
+HOUSED_AT on HOUSED_AT.SID = SHELTER.SID 
+inner join PET on HOUSED_AT.PID = PET.PID
+inner join SHELTER_ADDRESS on SHELTER.SID = SHELTER_ADDRESS.SID WHERE CITY LIKE '%".$search."%'";
 
 if($type == 'other'){
     $query = $query." AND TYPE != 'cat' AND TYPE != 'dog'";
+} else if($type == ""){
+
 } else {
     $query = $query." AND TYPE='".$type."'";
 
 }
 $length = 0;
 
-echo $query;
+//echo $query;
 
 if ($result = $mysqli->query($query)) {
 
@@ -69,6 +78,9 @@ if ($result = $mysqli->query($query)) {
         $petscontent[$length] = $row["NAME"];
         $pettype[$length] = $row["TYPE"];
         $petsid[$length] = $row["PID"];
+        $breed[$length] = $row["BREED"];
+        $sheltercity[$length] = $row['CITY'].", ".$row['STATE'];
+        $petphotos[$length] = $row['PHOTOFILENAME'];
         $length++;
 	}
 
@@ -78,24 +90,36 @@ if ($result = $mysqli->query($query)) {
 
 $arrlength = count($petsid);
 if($arrlength != 0)  {
-	echo "<table><tr><th>Pet ID</th><th>Name</th><th>Type</th></tr>";
+
+    echo "<div class=\"container\">";
 	for($x = 0; $x < $arrlength; $x++) {
-		echo "<tr><td>".$petsid[$x]."</a></td>";
-        echo "<td><a href=\"viewpet.php?id=$petsid[$x]\">".$petscontent[$x]."</a></td>";
-        echo "<td>".$pettype[$x]."</td></tr>";
+
+        echo "<div id=\"search-result\">";
+            
+            echo "<img src=../img/".$petphotos[$x]." width=\"300px\"\" ></br>";
+            echo "</br></br>";
+            echo "<a href=\"viewpet.php?search=$search&type=$type&id=$petsid[$x]\">".$petscontent[$x]."</a></br>";
+            echo $breed[$x]."</br>";
+            echo $sheltercity[$x]."</br></br>";
+
+        echo "</div>";
 	}
-	echo "</table>";
+	echo "</br> </div>";
 } else {
 	echo "There were no pets matching that query";
 }
 
-echo " <br>";
-echo "<a href=\"../index.html\" class=\"button\">Return to Search Page</a>";
+echo " </br>";
 
 /* close connection */
 $mysqli->close();
 
 ?>  
 
-</body>
+</div>
+    <div class="footer">
+        EECS 647 - May 9, 2019 | Source code on <a href="https://github.com/katiehrenchir/fill-the-void">GitHub</a>
+    </div>
+  </body>
 </html>
+</p>

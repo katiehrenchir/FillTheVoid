@@ -1,3 +1,108 @@
 h1 {
-    color: blue;
+    color: white;
+    font-size: 40px;
+}
+
+h4 {
+    color: white;
+    font-size: 30px;
+}
+
+body {
+    font-family: Courier New;
+    height: 100%;
+    margin: 0;
+}
+
+.container
+{   
+    clear:left;
+    vertical-align: top;
+    display: flex;
+
+}
+
+input[type=text] {
+    width: 70%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 20%;
+    background-color: white;
+    box-sizing: border-box;
+    border-radius: 12px;
+    height: 3em;
+}
+
+.main
+{
+    margin: auto;
+    width: 50%;
+    display: block;
+
+    border-radius: 25px;
+    padding: 30px;
+    margin-top: 2em;
+
+    background-color: #4ca83f;	
+    font-family: "Courier New", Courier, monospace;
+    color: white;
+    font-size: 20px;
+
+
+}
+
+#main img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#search-result 
+{
+    float: left;
+    width: 50%;
+
+    margin: 10px;
+
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	padding-left: 1%;
+	padding-right: 2%;
+    clear:top;
+}
+
+.main container
+{   
+    clear:left;
+    display: block;
+
+}
+
+#search-result img {
+    max-width: 40%;
+    float: left;
+}
+
+.main desc {
+    font-style: italic;
+}
+
+.footer {
+    font-size: 15px;
+    color: grey;
+    margin: auto;
+    display: block;
+    width: 50%;
+    padding-top: 5px;
+    text-align: center;
+}
+
+.footer a {
+    color:grey;
 }

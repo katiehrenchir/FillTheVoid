@@ -3,19 +3,29 @@
   <head>
     <meta  http-equiv="Content-Type" content="text/html;  charset=iso-8859-1">
     <title>Search  Pets</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+
   </head>
   <p><body>
-    <h3>Fill the Void</h3>
-    <form  method="GET" action="php/search.php">
-        <p>Find a </p>
-        <input type="radio" name="animaltype" value="dog" checked="checked"> Dog<br>
-        <input type="radio" name="animaltype" value="cat"> Cat<br>
-        <input type="radio" name="animaltype" value="other"> Other<br>
-        <p>near </p>
-      <input  type="text" name="search" placeholder="Location">
-      <input  type="submit" name="submit" value="Search">
-    </form>
+      <div class="main">
+        <h1>Animal Companion Locator</h1>
+        <form  method="GET" action="php/search.php">
+            <p>Find a 
+            <input type="radio" name="animaltype" value="dog"> Dog 
+            <input type="radio" name="animaltype" value="cat"> Cat
+            <input type="radio" name="animaltype" value="other"> Other<br>
+            </p>
+            <p>near 
+            <input  type="text" name="search" placeholder="Location">
+            <input  type="submit" name="submit" value="Search">
+            </p>
+        </form>
 
+
+    </div>
+    <div class="footer">
+        EECS 647 - May 9, 2019 | Source code on <a href="https://github.com/katiehrenchir/fill-the-void">GitHub</a>
+    </div>
   </body>
 </html>
 </p>
