@@ -1,28 +1,8 @@
 <?php
 
-include("credentials.php");
-
-$password = PASSWORD
-
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
-echo "<link rel='stylesheet' type='text/css' href='../css/style.css' />"; 
-echo "<title>View Pets </title>";
-
-/* database name is hkathleen */
-$mysqli = new mysqli("mysql.eecs.ku.edu", "hkathleen", $password, "hkathleen");
-
-/* check connection */
-if ($mysqli->connect_errno) {
-    printf("Connect failed: %s\n", $mysqli->connect_error);
-	echo "connection failed";
-    exit();
-}
-
+$mysqli = OpenCon();
 echo "connected successfully";
-
-$mysqli -> close();
+closeCon($mysqli)
 
 // $petname = $_POST['name'];
 // echo "<h1> Information about ".$petname."</h1>";
