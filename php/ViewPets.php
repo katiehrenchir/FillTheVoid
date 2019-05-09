@@ -16,13 +16,23 @@ if ($mysqli->connect_errno) {
 
 echo "<h1>connected successfully</h1>";
 
+$search = $_GET['search'];
+$search = $mysqli -> real_escape_string($search);
+
+$query1 = "SELECT NAME FROM PET WHERE NAME LIKE '%".$search."%'";
+$result= $mysqli -> query($query1);
+
+while($row = $result -> fetch_object()){
+    echo .$row -> NAME."</br>"
+}
+
 $query = "SELECT NAME FROM PET";
 
 if ($result = $mysqli->query($query)) {
 
     /* fetch associative array */
     while ($row = $result->fetch_assoc()) {
-        printf ("%s (%s)\n", $row["Name"]);
+        printf ("%s \n", $row["NAME"]);
     }
 
     /* free result set */
