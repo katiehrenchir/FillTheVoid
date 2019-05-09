@@ -26,7 +26,6 @@ while($row = $result -> fetch_object()){
     echo .$row -> NAME."</br>";
 }
 
-
 /* close connection */
 $mysqli->close();
 
