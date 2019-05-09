@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>View Pets </title>
+
+    <style></style>
+  </head>
+<body>
+<h1>View Pets</h1>
+
+<form id="viewUserPosts" action="../php/ViewPets.php" method="post">
+
+
+<?php 
+
+include("credentials.php");
+$password = PASSWORD
+
+$mysqli = new mysqli("mysql.eecs.ku.edu", "hkathleen", $password, "hkathleen");
+
+/* check connection */
+if ($mysqli->connect_errno) {
+    printf("Connect failed: %s\n", $mysqli->connect_error);
+	echo "connection failed";
+    exit();
+}
+
+
+$pets = array();
+$query = "SELECT name, type FROM PET";
+$length = 0;
+if ($result = $mysqli->query($query)) {
+
+    /* fetch associative array */
+    while ($row = $result->fetch_assoc()) {
+		$pets[$length] = $row["name"];
+		$length++;
+    }
+
+    /* free result set */
+    $result->free();
+} 
+
+
+$arrlength = count($pets);
+echo "<select name=\"poster\">";
+for($x = 0; $x < $arrlength; $x++) {
+	echo "<option value= \"".$users[$x]."\"> ";
+    echo $users[$x];
+	echo "</options>";
+}
+echo "</select>";
+
+/* close connection */
+$mysqli->close();
+
+
+?>
+
+<input type="submit" value="View Posts from this User">
+
+</form>
+
+
+</body>
+</html>

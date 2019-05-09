@@ -1,9 +1,13 @@
 <?php
 
+ini_set('display_startup_errors', true);
+error_reporting(E_ALL);
+ini_set('display_errors', true);
+
 echo "<link rel='stylesheet' type='text/css' href='../css/style.css' />"; 
 
 include("credentials.php");
-$password = PASSWORD
+$password = PASSWORD;
 
 $mysqli = new mysqli("mysql.eecs.ku.edu", "hkathleen", $password, "hkathleen");
 
