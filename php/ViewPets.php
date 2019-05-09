@@ -1,4 +1,5 @@
-<?php
+<?php include("credentials.php");
+$password = PASSWORD;
 
 ini_set('display_startup_errors', true);
 error_reporting(E_ALL);
@@ -6,7 +7,6 @@ ini_set('display_errors', true);
 
 echo "<link rel='stylesheet' type='text/css' href='../css/style.css' />"; 
 
-require_once 'credentials.php';
 $mysqli = new mysqli("mysql.eecs.ku.edu", "hkathleen", $password, "hkathleen");
 
 /* check connection */
