@@ -18,7 +18,7 @@ body {
 {   
     clear:left;
     vertical-align: top;
-    display: flex;
+    display: block;
 
 }
 
@@ -62,11 +62,13 @@ input[type=submit] {
     width: 50%;
 }
 
-#search-result 
+.search-result 
 {
-    float: left;
-    width: 50%;
-
+    /* float: left;
+    width: 50%; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
     margin: 10px;
 
 	margin-left: auto;
@@ -84,7 +86,7 @@ input[type=submit] {
 
 }
 
-#search-result img {
+.search-result-img {
     max-width: 40%;
     float: left;
 }

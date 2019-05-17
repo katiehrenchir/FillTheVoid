@@ -19,38 +19,26 @@ date_default_timezone_set('America/Chicago');
 
 $mysqli = new mysqli("mysql.eecs.ku.edu", "hkathleen", "Phah7bie", "hkathleen");
 
-$pet_id = $_GET['id'];
-$orig_search = $_GET['search'];
-$orig_type = $_GET['type'];
+$shelter_id = $_GET['sid'];
 
 
-$query = "SELECT * FROM PET WHERE PID=".$pet_id;
+$query = "SELECT * FROM SHELTER WHERE SID=".$shelter_id;
 
 if ($result = $mysqli->query($query)) {
 
     /* fetch object array */
     while ($obj = $result->fetch_object()) {
         echo "<h1>".$obj->NAME."</h1>";
-
-        echo "<img src=../img/".$obj->PHOTOFILENAME." ></br>";
         
         echo "<div class=\"desc\" font-style=\"italic\">";
-        echo $obj->BREED." | ";
-        echo $obj->COLOR."</br>";
-        echo ucwords($obj->SEX)."</br>";
-        echo "Birthdate: ".getAgeCategory($obj->BIRTHDATE, $obj->TYPE)."</br>";
-        echo "Weight: ".$obj->WEIGHT." pounds </br></br>";
+        echo "<a href=\"$obj->WEBSITEURL\">Website</a>";
+        echo $obj->PHONE."</br>";
+        echo $obj->EMAIL."</br>";
         echo "</div>";
-
-        echo "Adoption Fee: $".$obj->ADOPTIONFEE."</br>";
-
 
         echo "<h4>Description</h4>";
         echo $obj->DESCRIPTION."</br></br>";
-        echo "Spayed/Neutered: ".$obj->FIXED."</br>";
-        echo "Vaccinations up to date: ".$obj->VACCINATED."</br>";
-        echo "Would do well in a home with: ".ucwords($obj->GOODWITH)."</br>";
-
+        echo $obj->ADOPTIONPOLICY."</br></br>";
     }
 
     /* free result set */
@@ -61,20 +49,8 @@ if ($result = $mysqli->query($query)) {
 $mysqli->close();
 
 echo " <br>";
-echo "<a href=\"search.php?search=$orig_search&animaltype=$orig_type\" class=\"button\">Return to Search Page</a>";
+echo "<a href=\"search.php\" class=\"button\">Return to Search Page</a>";
 
-
-function getAgeCategory($birthdate, $animaltype){
-
-    //get age
-    $birthday = new DateTime($birthdate);
-    $age = $birthday->diff(new DateTime())->format('y');
-
-    //apply correct term for animal type (kitten, puppy, etc)
-
-    return $birthdate;
-
-}
 
 ?>
 
