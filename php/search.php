@@ -26,7 +26,7 @@ if ($mysqli->connect_errno) {
 <div class="main">
 
 <h1>Animal Companion Locator</h1>
-<form  method="GET" action="search.php">
+<!-- <form  method="GET" action="search.php">
             <p>Find a 
             <input type="radio" name="animaltype" value="dog"> Dog 
             <input type="radio" name="animaltype" value="cat"> Cat
@@ -37,9 +37,11 @@ if ($mysqli->connect_errno) {
             <input  type="text" name="search" placeholder="Location">
             <input  type="submit" name="submit" value="Search">
             </p>
-</form>
+</form> -->
 
 <?php 
+
+echo "<a href=\"../index.html\" class=\"button\">Return to Home</a>";
 
 $search = $_GET['search'];
 $type = $_GET['animaltype'];
@@ -53,14 +55,7 @@ $vaxx = $_GET['vaxx'];
 //the following line protects from sqlinjection
 //$search = mysql_real_escape_string($search);
 
-echo "<h3>Search results</h3>";
-
-$petsid = array();
-$petscontent = array();
-$pettype = array();
-$breed = array();
-$sheltername = array();
-$petphotos = array();
+echo "<h2>Search results</h2>";
 
 $query = "SELECT * FROM SHELTER inner join 
 HOUSED_AT on HOUSED_AT.SID = SHELTER.SID 
@@ -140,7 +135,10 @@ if ($result = $mysqli->query($query)) {
         $petsid[$length] = $row["PID"];
         $breed[$length] = $row["BREED"];
         $sheltercity[$length] = $row['CITY'].", ".$row['STATE'];
+        $shelterid[$length] = $row['SID'];
+        $sheltername[$length] = $row['SNAME'];
         $petphotos[$length] = $row['PHOTOFILENAME'];
+
         $length++;
 	}
 
@@ -158,8 +156,9 @@ if($arrlength != 0)  {
             
             echo "<img class=\"search-result-img\" src=../img/".$petphotos[$x]." width=\"300px\"\" ></br>";
             echo "</br></br>";
-            echo "<a href=\"viewpet.php?search=$search&type=$type&id=$petsid[$x]\">".$petscontent[$x]."</a></br></br>";
+            echo "<a href=\"viewpet.php?search=$search&type=$type&id=$petsid[$x]&sid=$shelterid[$x]\">".$petscontent[$x]."</a></br></br>";
             echo $breed[$x]."</br>";
+            echo $sheltername[$x]."</br>";
             echo $sheltercity[$x]."</br></br>";
 
         echo "</div>";
@@ -178,7 +177,7 @@ $mysqli->close();
 
 </div>
     <div class="footer">
-        EECS 647 - May 9, 2019 | Source code on <a href="https://github.com/katiehrenchir/fill-the-void">GitHub</a>
+        EECS 647 - May 18, 2019 | Source code on <a href="https://github.com/katiehrenchir/fill-the-void">GitHub</a>
     </div>
   </body>
 </html>

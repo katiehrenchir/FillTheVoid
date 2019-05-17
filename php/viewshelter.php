@@ -17,7 +17,8 @@ ini_set('display_errors', true);
 
 date_default_timezone_set('America/Chicago');
 
-$mysqli = new mysqli("mysql.eecs.ku.edu", "hkathleen", "Phah7bie", "hkathleen");
+include('credentials.php'); 
+$mysqli = new mysqli("mysql.eecs.ku.edu", "hkathleen", $password, "hkathleen");
 
 $shelter_id = $_GET['sid'];
 
@@ -28,16 +29,17 @@ if ($result = $mysqli->query($query)) {
 
     /* fetch object array */
     while ($obj = $result->fetch_object()) {
-        echo "<h1>".$obj->NAME."</h1>";
+        echo "<h1>".$obj->SNAME."</h1>";
         
         echo "<div class=\"desc\" font-style=\"italic\">";
-        echo "<a href=\"$obj->WEBSITEURL\">Website</a>";
+        echo "<a href=\"$obj->WEBSITEURL\">Website</a></br>";
         echo $obj->PHONE."</br>";
         echo $obj->EMAIL."</br>";
         echo "</div>";
 
         echo "<h4>Description</h4>";
         echo $obj->DESCRIPTION."</br></br>";
+        echo "<h4>Adoption Policy</h4>";
         echo $obj->ADOPTIONPOLICY."</br></br>";
     }
 
@@ -49,7 +51,7 @@ if ($result = $mysqli->query($query)) {
 $mysqli->close();
 
 echo " <br>";
-echo "<a href=\"search.php\" class=\"button\">Return to Search Page</a>";
+echo "<a href=\"../index.html\" class=\"button\">Return to Home</a>";
 
 
 ?>
