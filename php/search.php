@@ -1,10 +1,6 @@
 <?php ?>
 <?php 
 
-// ini_set('display_startup_errors', true);
-// error_reporting(E_ALL);
-// ini_set('display_errors', true);
-
 include('credentials.php'); 
 $mysqli = new mysqli("mysql.eecs.ku.edu", "hkathleen", $password, "hkathleen");
 
@@ -26,18 +22,6 @@ if ($mysqli->connect_errno) {
 <div class="main">
 
 <h1>Animal Companion Locator</h1>
-<!-- <form  method="GET" action="search.php">
-            <p>Find a 
-            <input type="radio" name="animaltype" value="dog"> Dog 
-            <input type="radio" name="animaltype" value="cat"> Cat
-            <input type="radio" name="animaltype" value="other"> Other<br>
-            </p>
-
-            <p>near 
-            <input  type="text" name="search" placeholder="Location">
-            <input  type="submit" name="submit" value="Search">
-            </p>
-</form> -->
 
 <?php 
 
@@ -177,7 +161,7 @@ $mysqli->close();
 
 </div>
     <div class="footer">
-        EECS 647 - May 18, 2019 | Source code on <a href="https://github.com/katiehrenchir/fill-the-void">GitHub</a>
+        EECS 647 - May 17, 2019 | Source code on <a href="https://github.com/katiehrenchir/fill-the-void">GitHub</a>
     </div>
   </body>
 </html>

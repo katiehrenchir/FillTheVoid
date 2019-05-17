@@ -11,10 +11,6 @@
 
 <?php
 
-ini_set('display_startup_errors', true);
-error_reporting(E_ALL);
-ini_set('display_errors', true);
-
 include('credentials.php'); 
 $mysqli = new mysqli("mysql.eecs.ku.edu", "hkathleen", $password, "hkathleen");
 
@@ -109,7 +105,7 @@ echo "<a href=\"search.php?search=$orig_search&animaltype=$orig_type\" class=\"b
 
 </div>
     <div class="footer">
-        EECS 647 - May 18, 2019 | Source code on <a href="https://github.com/katiehrenchir/fill-the-void">GitHub</a>
+        EECS 647 - May 17, 2019 | Source code on <a href="https://github.com/katiehrenchir/fill-the-void">GitHub</a>
     </div>
   </body>
 </html>
